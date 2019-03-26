@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  9 00:12:41 2018
+
+@author: 宝宝天龙
+"""
+
+import random
+import xlrd
+import xlwt
+from math import *
+
+book = xlwt.Workbook(encoding='utf-8', style_compression=0)
+sheet = book.add_sheet('class', cell_overwrite_ok=True)
+
+asso = ['桌游社', '动漫社', '国学社', '街舞社', '游戏社', '晨读社', 
+        'ACM社', '轮滑社', '科幻社', '哈哈社', '101战队', '奇葩社']
+
+idx = 0
+for dep in range(1, 13):
+    id = 16000000000+dep*10000000
+    for j in range(1, 11):
+        temp1 = id+j*10000
+        temp = temp1
+        for i in range(1, 101):
+            id1 = temp+i
+            sheet.write(idx, 0, id1)
+            sheet.write(idx, 1, random.randint(1, 13))
+            sheet.write(idx, 2, random.randint(2016, 2019))
+            idx = idx+1
+book.save(r'E:\database\stu_asso.xls')

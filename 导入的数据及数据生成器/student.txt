@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  9 00:12:41 2018
+
+@author: 宝宝天龙
+"""
+
+import random
+import xlrd
+import xlwt
+from math import *
+
+book = xlwt.Workbook(encoding='utf-8', style_compression=0)
+sheet = book.add_sheet('class', cell_overwrite_ok=True)
+
+dept = ['通信工程系', '电子信息工程系', '计算机科学与技术系', '机电工程系', '物理与光电工程系', '经济与管理系', 
+        '数学与统计系', '人文系', '外国系', '软件系', '微电子学院系', '生命科学技术系']
+deptname = ['STE', 'SEE', 'CS', 'EME', 'SPOE', 'EM', 'MATH', 'RWXY', 'SFL', 'SE', 'SME', 'LIFE']
+xing = '赵钱孙李周吴郑王田赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤'
+ming1 = '黄初三年余朝京师还济洛川古人有言斯水之名曰宓妃感宋玉对楚王神女之事遂作斯赋其辞曰'
+ming2 = '余从京域言归东藩背伊阙越轘辕经通谷陵景山日既西倾车殆马烦尔乃税驾乎蘅皋秣驷乎芝田容与乎阳林流眄乎洛川于是精移神 骇忽焉思散俯则未察仰以殊观睹一丽人于岩之畔乃援御者而告之曰尔有觌于彼者乎彼何人斯若此之艳也御者对曰臣闻河洛之神名曰宓妃然则君王所见无乃是乎其状若何臣愿闻之'
+
+idx=0
+for dep in range(1, 13):
+    id = 16000000000+dep*10000000
+    for j in range(1, 11):
+        temp1 = id+j*10000
+        temp = temp1
+        for i in range(1, 101):
+            id1 = temp+i
+            sheet.write(idx, 0, id1)
+            sheet.write(idx, 1, random.choice(xing)+random.choice(ming1)+random.choice(ming2))
+            sheet.write(idx, 2, random.randint(18, 23))
+            sheet.write(idx, 3, random.choice(['男', '女']))
+            sheet.write(idx, 4, floor(id1/10000))
+            idx = idx+1
+book.save(r'E:\database\student.xls')
